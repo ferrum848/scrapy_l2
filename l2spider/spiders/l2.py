@@ -18,7 +18,7 @@ class BrickSetSpider(scrapy.Spider):
 
 		#next = 'div.holder a'
 		#for j in response.css(next):
-		#	yield {'nexxxxxxxt': j.css('a ::attr(href)').extract_first()}
+		#	yield {'next': j.css('a ::attr(href)').extract_first()}
 
 		text = response.css(NAME_SELECTOR).extract_first()
 		yield {'l2': text}
@@ -32,11 +32,7 @@ class BrickSetSpider(scrapy.Spider):
 	def parse_next(self, response):
 		for k in response.css('div.news-block img'):
 			link = k.css('img ::attr(src)').extract_first()
-			yield {'next_imgs': link}
-
-		#SELECTOR = 'div.news-block img ::attr(src)'
-		#link = response.css(SELECTOR).extract_first()
-		#yield {'next_page_link': link}
+			#yield {'next_imgs': link}
 			yield L2SpiderItem(file_urls=[link])
 
 
